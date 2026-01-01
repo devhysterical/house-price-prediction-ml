@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🏠 House Price Prediction | California Housing</title>
+    <meta
+      name="description"
+      content="Predict California house prices using Machine Learning" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet" />
+  </head>
+  <body>
+    <div class="background-effects">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
+      <header class="header">
+        <div class="logo">
+          <span class="logo-icon">🏠</span>
+          <h1>House Price Prediction</h1>
+        </div>
+        <p class="subtitle">
+          Powered by Machine Learning • California Housing Dataset
+        </p>
+      </header>
+
+      <main class="main-content">
+        <div class="card prediction-form-card">
+          <div class="card-header">
+            <h2>📝 Enter House Details</h2>
+            <p>Fill in the property information to get a price prediction</p>
+          </div>
+
+          <form id="prediction-form">
+            <div class="form-grid">
+              <!-- Income -->
+              <div class="form-group">
+                <label for="MedInc">
+                  <span class="label-icon">💰</span>
+                  Median Income
+                  <span class="unit">($10,000s)</span>
+                </label>
+                <input
+                  type="range"
+                  id="MedInc"
+                  name="MedInc"
+                  min="0.5"
+                  max="15"
+                  step="0.1"
+                  value="3.5" />
+                <div class="range-value">
+                  <span id="MedInc-value">3.5</span>
+                </div>
+              </div>
+
+              <!-- House Age -->
+              <div class="form-group">
+                <label for="HouseAge">
+                  <span class="label-icon">🏗️</span>
+                  House Age
+                  <span class="unit">(years)</span>
+                </label>
+                <input
+                  type="range"
+                  id="HouseAge"
+                  name="HouseAge"
+                  min="1"
+                  max="52"
+                  step="1"
+                  value="25" />
+                <div class="range-value">
+                  <span id="HouseAge-value">25</span>
+                </div>
+              </div>
+
+              <!-- Average Rooms -->
+              <div class="form-group">
+                <label for="AveRooms">
+                  <span class="label-icon">🚪</span>
+                  Average Rooms
+                  <span class="unit">(per household)</span>
+                </label>
+                <input
+                  type="range"
+                  id="AveRooms"
+                  name="AveRooms"
+                  min="1"
+                  max="10"
+                  step="0.1"
+                  value="5" />
+                <div class="range-value">
+                  <span id="AveRooms-value">5.0</span>
+                </div>
+              </div>
+
+              <!-- Average Bedrooms -->
+              <div class="form-group">
+                <label for="AveBedrms">
+                  <span class="label-icon">🛏️</span>
+                  Average Bedrooms
+                  <span class="unit">(per household)</span>
+                </label>
+                <input
+                  type="range"
+                  id="AveBedrms"
+                  name="AveBedrms"
+                  min="0.5"
+                  max="5"
+                  step="0.1"
+                  value="1" />
+                <div class="range-value">
+                  <span id="AveBedrms-value">1.0</span>
+                </div>
+              </div>
+
+              <!-- Population -->
+              <div class="form-group">
+                <label for="Population">
+                  <span class="label-icon">👥</span>
+                  Block Population
+                  <span class="unit">(people)</span>
+                </label>
+                <input
+                  type="range"
+                  id="Population"
+                  name="Population"
+                  min="100"
+                  max="10000"
+                  step="100"
+                  value="1500" />
+                <div class="range-value">
+                  <span id="Population-value">1500</span>
+                </div>
+              </div>
+
+              <!-- Average Occupancy -->
+              <div class="form-group">
+                <label for="AveOccup">
+                  <span class="label-icon">👨‍👩‍👧‍👦</span>
+                  Average Occupancy
+                  <span class="unit">(per household)</span>
+                </label>
+                <input
+                  type="range"
+                  id="AveOccup"
+                  name="AveOccup"
+                  min="1"
+                  max="10"
+                  step="0.1"
+                  value="3" />
+                <div class="range-value">
+                  <span id="AveOccup-value">3.0</span>
+                </div>
+              </div>
+
+              <!-- Latitude -->
+              <div class="form-group">
+                <label for="Latitude">
+                  <span class="label-icon">📍</span>
+                  Latitude
+                  <span class="unit">(°N)</span>
+                </label>
+                <input
+                  type="range"
+                  id="Latitude"
+                  name="Latitude"
+                  min="32.5"
+                  max="42"
+                  step="0.1"
+                  value="35.5" />
+                <div class="range-value">
+                  <span id="Latitude-value">35.5</span>
+                </div>
+              </div>
+
+              <!-- Longitude -->
+              <div class="form-group">
+                <label for="Longitude">
+                  <span class="label-icon">🗺️</span>
+                  Longitude
+                  <span class="unit">(°W)</span>
+                </label>
+                <input
+                  type="range"
+                  id="Longitude"
+                  name="Longitude"
+                  min="-124.5"
+                  max="-114"
+                  step="0.1"
+                  value="-119.5" />
+                <div class="range-value">
+                  <span id="Longitude-value">-119.5</span>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="predict-btn" id="predict-btn">
+              <span class="btn-text">🔮 Predict Price</span>
+              <span class="btn-loading">
+                <div class="spinner"></div>
+                Predicting...
+              </span>
+            </button>
+          </form>
+        </div>
+
+        <div class="card result-card" id="result-card">
+          <div class="card-header">
+            <h2>💎 Prediction Result</h2>
+          </div>
+          <div class="result-content">
+            <div class="result-placeholder" id="result-placeholder">
+              <div class="placeholder-icon">🏡</div>
+              <p>
+                Fill in the details and click "Predict Price" to see the
+                estimated house value
+              </p>
+            </div>
+            <div class="result-data" id="result-data" style="display: none">
+              <div class="price-display">
+                <span class="price-label">Estimated Price</span>
+                <span class="price-value" id="price-value">$0</span>
+              </div>
+              <div class="price-details">
+                <div class="detail-item">
+                  <span class="detail-label">In $100K units</span>
+                  <span class="detail-value" id="price-100k">0</span>
+                </div>
+              </div>
+            </div>
+            <div class="result-error" id="result-error" style="display: none">
+              <div class="error-icon">⚠️</div>
+              <p id="error-message">An error occurred</p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>
